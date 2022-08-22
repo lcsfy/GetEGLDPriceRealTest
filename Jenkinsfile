@@ -45,16 +45,27 @@ pipeline {
 	        )
 	            }
 	        }
-	         // Test Stages
-	        stage('Test') {
+	        stage('Perform Tests') {
 	            steps {
-	                echo 'Testing..the workflow...'
+	                echo 'Testing the workflow...'
+					UiPathTest (
+					  testTarget: [$class: 'TestSetEntry', testSet: "testSet"],
+					  orchestratorAddress: "${UIPATH_ORCH_URL}",
+					  orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
+					  folderName: "${UIPATH_ORCH_FOLDER_NAME}",
+					  timeout: 10000,
+					  traceLevel: 'None',
+					  testResultsOutputPath: "result.xml",
+					  //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: "credentialsId"]
+					  credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'),
+					  parametersFilePath: ''
+					)
 	            }
-	        }
+			}
 	
 
 	         // Deploy Stages
-	        stage('Deploy to UAT') {
+	        stage('Deploy to Cloud Orchestrator') {
 	            steps {
 	                echo "Deploying ${BRANCH_NAME} to UAT "
 	                UiPathDeploy (
@@ -77,11 +88,7 @@ pipeline {
 	
 
 	         // Deploy to Production Step
-	        stage('Deploy to Production') {
-	            steps {
-	                echo 'Deploy to Production'
-	                }
-	            }
+
 	    }
 	
 
