@@ -1,0 +1,19 @@
+pool:
+  name: LocalPoolLucian
+  demands: npm
+
+steps:
+- task: uipath.vsts-uipath-package.uipath-pack.UiPathPack@2
+  displayName: 'UiPath Pack'
+  inputs:
+    versionType: AutoVersion
+    projectJsonPath: project.json
+    orchestratorConnection: scname
+
+- task: uipath.vsts-uipath-package.uipath-deploy.UiPathDeploy@2
+  displayName: 'UiPath Deploy'
+  inputs:
+    orchestratorConnection: scname
+    packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
+    folderName: Default
+
