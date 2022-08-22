@@ -96,7 +96,7 @@
         <InArgument x:TypeArguments="x:String">[PretRaw.Split(":"c)(2).ToString.Trim.Split("}"c)(0).ToString.Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Pretul EGLD este acumaaa: &quot; + PretProcesat]" />
+    <WriteLine DisplayName="aWrite Line" sap:VirtualizedContainerService.HintSize="262.4,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Pretul EGLD este acumaaa: &quot; + PretProcesat]" />
     <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[PriceFinal]</OutArgument>
