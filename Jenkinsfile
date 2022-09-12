@@ -8,7 +8,7 @@ pipeline {
 	        MINOR = '0'
 	        //Orchestrator Services
 	        UIPATH_ORCH_URL = "https://uexmvubk4n6fxg.westeurope.cloudapp.azure.com/"
-	        UIPATH_ORCH_LOGICAL_NAME = "uipathlucian"
+	        UIPATH_ORCH_LOGICAL_NAME = "default"
 	        UIPATH_ORCH_TENANT_NAME = "DefaultTenant"
 	        UIPATH_ORCH_FOLDER_NAME = "Shared"
 	    }
