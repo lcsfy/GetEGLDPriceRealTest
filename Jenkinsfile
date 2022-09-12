@@ -75,7 +75,8 @@ pipeline {
 	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
 	                environments: 'Shared',
 	                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
-	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
+	                //credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
+			credentials: ExternalApp(accountForApp: 'default', applicationId: '95b8b659-95ec-4547-ae4e-657b20a0756f', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
 					traceLevel: 'None',
 					entryPointPaths: 'Main.xaml'
 	
