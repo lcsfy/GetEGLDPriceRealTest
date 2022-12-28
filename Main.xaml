@@ -77,7 +77,7 @@
       <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="aaaSequence" sap:VirtualizedContainerService.HintSize="375.2,848" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="aSequence" sap:VirtualizedContainerService.HintSize="375.2,848" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="PretRaw" />
       <Variable x:TypeArguments="x:String" Name="PretProcesat" />
