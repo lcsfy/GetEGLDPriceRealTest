@@ -39,45 +39,28 @@ pipeline {
 	                UiPathPack (
 	                      outputPath: "Output\\${env.BUILD_NUMBER}",
 	                      projectJsonPath: "project.json",
+			credentials: ExternalApp(accountForApp: 'default', applicationId: '95b8b659-95ec-4547-ae4e-657b20a0756f', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
 	                      version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 	                      useOrchestrator: false,
 						  traceLevel: 'None'
 	        )
 	            }
-	        }
-	        stage('Perform Tests') {
-	            steps {
-	                echo 'Testing the workflow...'
-					UiPathTest (
-					  testTarget: [$class: 'TestSetEntry', testSet: "testSet"],
-					  orchestratorAddress: "${UIPATH_ORCH_URL}",
-					  orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
-					  folderName: "${UIPATH_ORCH_FOLDER_NAME}",
-					  timeout: 10000,
-					  traceLevel: 'None',
-					  testResultsOutputPath: "result.xml",
-					  //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: "credentialsId"]
-					  credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'),
-					  parametersFilePath: ''
-					)
-	            }
-			}
-	
+	        }	
 
 	         // Deploy Stages
-	        stage('Deploy to Cloud Orchestrator') {
-	            steps {
-	                echo "Deploying ${BRANCH_NAME} to UAT "
-	                UiPathDeploy (
-	                packagePath: "Output\\${env.BUILD_NUMBER}",
-	                orchestratorAddress: "${UIPATH_ORCH_URL}",
-	                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
-	                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
-	                environments: 'Shared',
-	                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
-	                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'), 
-					traceLevel: 'None',
-					entryPointPaths: 'Main.xaml'
+ stage('Deploy to Automation Suite') {
+                steps {
+                    echo "Deploying ${BRANCH_NAME} to UAT "
+                    UiPathDeploy (
+                    packagePath: "Output\\${env.BUILD_NUMBER}",
+                    orchestratorAddress: "${UIPATH_ORCH_URL}",
+                    orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
+                    folderName: "${UIPATH_ORCH_FOLDER_NAME}",
+                    environments: 'Shared',
+            credentials: ExternalApp(accountForApp: 'default', applicationId: '95b8b659-95ec-4547-ae4e-657b20a0756f', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
+                    traceLevel: 'None',
+                    entryPointPaths: 'Main.xaml'
+
 	
 
 	        )
