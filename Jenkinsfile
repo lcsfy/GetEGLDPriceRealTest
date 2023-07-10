@@ -39,7 +39,7 @@ pipeline {
 	                UiPathPack (
 	                      outputPath: "Output\\${env.BUILD_NUMBER}",
 	                      projectJsonPath: "project.json",
-			credentials: ExternalApp(accountForApp: 'default', applicationId: '95b8b659-95ec-4547-ae4e-657b20a0756f', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
+			 credentials: ExternalApp(accountForApp: 'default', applicationId: 'a2a58103-8d15-40f2-aa2c-f994c2da7a23', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
 	                      version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
 	                      useOrchestrator: false,
 						  traceLevel: 'None'
@@ -48,7 +48,7 @@ pipeline {
 	        }	
 
 	         // Deploy Stages
- stage('Deploy to Automation Suite') {
+ stage('Deploy to Automation Cloud') {
                 steps {
                     echo "Deploying ${BRANCH_NAME} to UAT "
                     UiPathDeploy (
@@ -57,7 +57,7 @@ pipeline {
                     orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
                     folderName: "${UIPATH_ORCH_FOLDER_NAME}",
                     environments: 'Shared',
-            credentials: ExternalApp(accountForApp: 'default', applicationId: '95b8b659-95ec-4547-ae4e-657b20a0756f', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
+            credentials: ExternalApp(accountForApp: 'default', applicationId: 'a2a58103-8d15-40f2-aa2c-f994c2da7a23', applicationScope: 'OR.Settings.Read OR.Robots.Read OR.Machines.Read OR.Execution OR.Assets OR.Jobs OR.Users.Read OR.Monitoring OR.Folders OR.BackgroundTasks OR.TestSets OR.TestSetExecutions OR.TestSetSchedules', applicationSecret: 'jenk', identityUrl: ''),
                     traceLevel: 'None',
                     entryPointPaths: 'Main.xaml'
 
