@@ -53,7 +53,8 @@ pipeline {
                     echo "Installing WIN_22.10.8438.32859"
                     UiPathInstallPlatform(
                     cliVersion: 'WIN_22.10.8438.32859',
-			traceLevel: 'None'
+			traceLevel: 'None',
+			    cliNupkgPath: 'C:\Users\OrchAdmin\Downloads\UiPath.CLI.Windows.22.10.8438.32859.nupkg'
 		)
 	            }
  }
