@@ -31,7 +31,17 @@ pipeline {
 	            }
 	        }
 	
-
+ stage('Installing platform') { 
+	 	steps {
+                    echo "Installing WIN_22.10.8438.32859"
+                    UiPathInstallPlatform(
+                    cliVersion: 'WIN_22.10.8438.32859',
+			traceLevel: 'None',
+			    cliNupkgPath: 'C:\\Users\\OrchAdmin\\Downloads\\UiPath.CLI.Windows.22.10.8438.32859.nupkg'
+		)
+	            }
+ }
+		    
 	         // Build Stages
 	        stage('Build') {
 	            steps {
@@ -48,16 +58,7 @@ pipeline {
 	        }	
 
 	         // Deploy Stages
- stage('Insstalling platform') { 
-	 	steps {
-                    echo "Installing WIN_22.10.8438.32859"
-                    UiPathInstallPlatform(
-                    cliVersion: 'WIN_22.10.8438.32859',
-			traceLevel: 'None',
-			    cliNupkgPath: 'C:\\Users\\OrchAdmin\\Downloads\\UiPath.CLI.Windows.22.10.8438.32859.nupkg'
-		)
-	            }
- }
+
 		    
  stage('Deploy to Automation Cloud') {
                 steps {
