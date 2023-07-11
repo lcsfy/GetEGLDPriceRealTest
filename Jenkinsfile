@@ -52,7 +52,8 @@ pipeline {
 	 	steps {
                     echo "Installing WIN_22.10.8438.32859"
                     UiPathInstallPlatform(
-                    cliVersion: 'WIN_22.10.8438.32859'
+                    cliVersion: 'WIN_22.10.8438.32859',
+			traceLevel: 'None'
 		)
 	            }
  }
